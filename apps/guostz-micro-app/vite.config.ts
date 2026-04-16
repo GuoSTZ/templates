@@ -1,0 +1,24 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vitest/config";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 9000,
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
+  envPrefix: "VITE_",
+  test: {
+    environment: "jsdom",
+    setupFiles: "./src/tests/setup.ts",
+  },
+});
