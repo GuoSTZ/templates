@@ -13,7 +13,7 @@ export function ShellLayout() {
   const { token } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ maxHeight: "100vh" }}>
       <Layout.Sider
         width={240}
         theme={themeType === "light" ? "light" : "dark"}
