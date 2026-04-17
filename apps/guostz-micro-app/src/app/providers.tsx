@@ -2,6 +2,18 @@ import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
 import { ConfigProvider } from "antd";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider, useTheme } from "./ThemeContext";
+import { themeConfigs } from "./theme";
+
+function ThemedApp({ children }: PropsWithChildren) {
+  const { themeType } = useTheme();
+
+  return (
+    <ConfigProvider theme={themeConfigs[themeType]}>
+      {children}
+    </ConfigProvider>
+  );
+}
 
 export function AppProviders({ children }: PropsWithChildren) {
   const queryClient = useMemo(
@@ -18,14 +30,10 @@ export function AppProviders({ children }: PropsWithChildren) {
   );
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#1677ff",
-        },
-      }}
-    >
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </ConfigProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <ThemedApp>{children}</ThemedApp>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
