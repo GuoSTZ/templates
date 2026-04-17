@@ -1,21 +1,26 @@
-import { Navigate, createBrowserRouter, type RouteObject } from "react-router-dom";
+import { Navigate, Outlet, createBrowserRouter, type RouteObject } from "react-router-dom";
 
-import DemoFormPage from "@/pages/demo-form-page";
-import DemoListPage from "@/pages/demo-list-page";
 import NotFoundPage from "@/pages/not-found-page";
+import HooksPage from "@/pages/hooks";
 
 const routes: RouteObject[] = [
   {
     path: "/",
-    element: <Navigate to="/demo/list" replace />,
+    element: <Navigate to="/hooks/dashboard" replace />,
   },
   {
-    path: "/demo/list",
-    element: <DemoListPage />,
-  },
-  {
-    path: "/demo/form",
-    element: <DemoFormPage />,
+    path: "/hooks",
+    element: <Outlet />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="dashboard" replace />,
+      },
+      {
+        path: "dashboard",
+        element: <HooksPage />,
+      },
+    ],
   },
   {
     path: "*",

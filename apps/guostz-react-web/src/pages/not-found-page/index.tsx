@@ -10,7 +10,7 @@ export default function NotFoundPage() {
       title="404"
       subTitle="页面不存在"
       extra={
-        <Button type="primary" onClick={() => navigate("/demo/list")}>
+        <Button type="primary" onClick={() => navigate("/hooks")}>
           返回示例列表
         </Button>
       }
