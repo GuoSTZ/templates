@@ -9,7 +9,8 @@ declare module "react/jsx-runtime" {
         name: string;
         url: string;
         baseroute?: string;
-        data?: string;
+        iframe?: boolean;
+        data?: Record<string, string | number | boolean | Record<string, any>>;
       };
     }
   }

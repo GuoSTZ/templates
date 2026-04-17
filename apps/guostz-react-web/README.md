@@ -20,7 +20,6 @@ bun run dev
 
 - `src/app`：应用装配，包含根组件、Provider 和路由
 - `src/pages`：页面级入口
-- `src/features`：业务域模块
 - `src/shared`：共享 UI、工具函数、类型与 hooks
 - `src/services`：请求层封装
 - `src/styles`：全局样式与 reset

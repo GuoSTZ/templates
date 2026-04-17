@@ -1,10 +1,10 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter, type RouteObject } from "react-router-dom";
 
 import DemoFormPage from "@/pages/demo-form-page";
 import DemoListPage from "@/pages/demo-list-page";
 import NotFoundPage from "@/pages/not-found-page";
 
-export const router = createBrowserRouter([
+const routes: RouteObject[] = [
   {
     path: "/",
     element: <Navigate to="/demo/list" replace />,
@@ -21,4 +21,10 @@ export const router = createBrowserRouter([
     path: "*",
     element: <NotFoundPage />,
   },
-]);
+];
+
+export function createAppRouter(basename = "/") {
+  return createBrowserRouter(routes, {
+    basename: basename === "/" ? undefined : basename,
+  });
+}

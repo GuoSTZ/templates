@@ -1,13 +1,15 @@
 import { Empty, Spin } from "antd";
 
-import type { MicroAppConfig } from "@/features/micro-app/types";
-
-type MicroAppViewProps = {
-  app: MicroAppConfig | null;
+export type MicroAppConfig = {
+  name: string;
+  url: string;
+  baseroute: string;
+  iframe?: boolean;
 };
 
-export function MicroAppView({ app }: MicroAppViewProps) {
-  if (!app) {
+export function MicroAppView(props: MicroAppConfig) {
+  const { name, url, baseroute, ...restProps } = props;
+  if (!props.name) {
     return <Empty description="未找到子应用配置" />;
   }
 
@@ -15,16 +17,17 @@ export function MicroAppView({ app }: MicroAppViewProps) {
     <section style={{ minHeight: "100%", background: "#fff", borderRadius: 16, padding: 16 }}>
       <Spin spinning={false} description="子应用加载中">
         <micro-app
-          name={app.name}
-          url={app.entry}
-          baseroute={app.baseroute}
+          {...restProps}
+          name={name}
+          url={url}
+          baseroute={baseroute}
           disable-memory-router
-          data={JSON.stringify({
+          data={{
             from: "guostz-micro-app",
             token: "",
             theme: "light",
             user: { name: "Guest" },
-          })}
+          }}
         />
       </Spin>
     </section>

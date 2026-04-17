@@ -1,7 +1,5 @@
-import { Button, Card, Form, Input, Select, Space, message } from "antd";
+import { Button, Card, Form, Input, Select, message } from "antd";
 import { useNavigate } from "react-router-dom";
-
-import { PageContainer } from "@/shared/ui/page-container";
 
 type DemoFormValues = {
   name: string;
@@ -18,15 +16,9 @@ export default function DemoFormPage() {
   }
 
   return (
-    <PageContainer
-      title="示例表单"
-      extra={
-        <Space>
-          <Button onClick={() => navigate("/demo/list")}>返回列表</Button>
-        </Space>
-      }
-    >
+    <div>
       {contextHolder}
+      <Button onClick={() => navigate("/demo/list")}>返回列表</Button>
       <Card>
         <Form layout="vertical" onFinish={handleFinish}>
           <Form.Item label="名称" name="name" rules={[{ required: true, message: "请输入名称" }]}>
@@ -53,6 +45,6 @@ export default function DemoFormPage() {
           </Button>
         </Form>
       </Card>
-    </PageContainer>
+    </div>
   );
 }

@@ -19,7 +19,6 @@ bun run dev
 ## 目录
 
 - `src/app`：应用装配与 `micro-app` 初始化
-- `src/features/micro-app`：子应用注册表、类型与帮助函数
 - `src/pages`：首页、工作台与 404 页面
 - `src/shared/ui`：基座壳层布局
 - `src/shared/components`：`micro-app` 挂载组件

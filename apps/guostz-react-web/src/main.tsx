@@ -1,14 +1,9 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { startApp } from "@/app/micro-app";
 
-import { App } from "@/app/App";
-import { AppProviders } from "@/app/providers";
-import "@/styles/index.css";
+const container = document.getElementById("root");
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <AppProviders>
-      <App />
-    </AppProviders>
-  </StrictMode>,
-);
+if (!container) {
+  throw new Error("Root element #root was not found");
+}
+
+startApp(container);

@@ -1,7 +1,14 @@
+import { useMemo } from "react";
 import { RouterProvider } from "react-router-dom";
 
-import { router } from "@/app/router";
+import { createAppRouter } from "@/router";
 
-export function App() {
+type AppProps = {
+  basename?: string;
+};
+
+export function App({ basename = "/" }: AppProps) {
+  const router = useMemo(() => createAppRouter(basename), [basename]);
+
   return <RouterProvider router={router} />;
 }
